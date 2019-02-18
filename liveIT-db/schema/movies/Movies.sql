@@ -1,5 +1,5 @@
 create table Movies(
-movieId int not null,
+movieId int not null auto_increment,
 name varchar(50) not null,
 type varchar(50) not null,
 releasedDate date not null,
