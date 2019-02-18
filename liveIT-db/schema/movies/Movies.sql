@@ -1,5 +1,5 @@
 create table Movies(
-movieId int not null,
+movieId int not null auto_increment,
 name varchar(50) not null,
 type varchar(50) not null,
 releasedDate date not null,
@@ -12,6 +12,7 @@ genreId smallint,
 imdbURL varchar(500),
 rottenTomatoesURL varchar(500),
 versionStartDate timestamp not null default current_timestamp ,
+versionEndDate timestamp,
 Primary Key (movieId),
 FOREIGN Key (venueId) REFERENCES VENUE(venueId),
 FOREIGN Key (genreId) REFERENCES Genre(genreId)
