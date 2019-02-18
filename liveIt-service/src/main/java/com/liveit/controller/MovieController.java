@@ -1,4 +1,4 @@
-package controller;
+package com.liveit.controller;
 
 public class MovieController {
 }
