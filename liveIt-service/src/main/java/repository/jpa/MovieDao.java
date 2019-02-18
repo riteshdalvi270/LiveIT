@@ -1,4 +1,4 @@
-package jpa;
+package repository.jpa;
 
 public class MovieDao {
 }
