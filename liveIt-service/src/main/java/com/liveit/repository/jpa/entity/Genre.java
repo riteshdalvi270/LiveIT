@@ -17,4 +17,7 @@ public class Genre implements Serializable {
 
     @Column(name = "type")
     private String type;
+
+    @OneToOne(mappedBy = "genre", fetch = FetchType.LAZY)
+    private MovieEntity movieEntity;
 }

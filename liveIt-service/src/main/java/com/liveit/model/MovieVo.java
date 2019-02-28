@@ -1,56 +1,48 @@
 package com.liveit.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@JsonIgnoreProperties(value= {"id","version_start_date","version_end_date"},allowGetters=true)
 @Data
 public class MovieVo {
 
-    @JsonProperty("id")
-    private long movieID;
+    private int movieID;
 
-    @JsonProperty("movie_name")
     private String name;
 
-    @JsonProperty("type")
     private String type;
 
-    @JsonProperty("released_date")
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate releasedDate;
 
-    @JsonProperty("watch_date")
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate watchDate;
 
-    @JsonProperty("venue")
     private String venue;
 
-    @JsonProperty("amount_payed")
     private BigDecimal amountPayed;
 
-    @JsonProperty("screen_mode")
     private String screenMode;
 
-    @JsonProperty("our_rating")
     private short ourRating;
 
-    @JsonProperty("genre_id")
     private String genre;
 
-    @JsonProperty("imdb_url")
     private String imdbURL;
 
-    @JsonProperty("rotten_tomatoes_url")
     private String rottenTomatoesURL;
 
-    @JsonProperty("version_start_date")
+    @JsonIgnore
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDateTime versionStartDate;
 
-    @JsonProperty("version_end_date")
+    @JsonIgnore
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDateTime versionEndDate;
 }

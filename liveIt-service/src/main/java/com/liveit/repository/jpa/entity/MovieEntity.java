@@ -1,16 +1,21 @@
 package com.liveit.repository.jpa.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.engine.internal.Cascade;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name="Movies")
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class MovieEntity {
 
 	@Id
@@ -25,13 +30,13 @@ public class MovieEntity {
 	private String type;
 
 	@Column(name = "releasedDate")
-	private LocalDate releasedDate;
+	private Date releasedDate;
 
 	@Column(name = "watchDate")
-	private LocalDate watchDate;
+	private Date watchDate;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn
+	@OneToOne
+	@JoinColumn(name = "venueId", referencedColumnName = "venueId")
 	private Venue venue;
 
 	@Column(name = "amountPayed")
@@ -43,8 +48,8 @@ public class MovieEntity {
 	@Column(name = "ourRating")
 	private short ourRating;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn
+	@OneToOne
+	@JoinColumn(name = "genreId", referencedColumnName = "genreId")
 	private Genre genre;
 
 	@Column(name = "imdbURL")
@@ -54,8 +59,8 @@ public class MovieEntity {
 	private String rottenTomatoesURL;
 
 	@Column(name = "versionStartDate")
-	private LocalDate versionStartDate;
+	private Date versionStartDate;
 
 	@Column(name = "versionEndDate")
-	private LocalDate versionEndDate;
+	private Date versionEndDate;
 }

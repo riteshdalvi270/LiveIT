@@ -2,7 +2,7 @@ create table Movies(
 movieId int not null auto_increment,
 name varchar(50) not null,
 type varchar(50) not null,
-releasedDate date not null,
+releasedDate timestamp not null,
 watchDate timestamp not null default current_timestamp ,
 venueId smallint not null,
 amountPayed decimal(13,2) not null,

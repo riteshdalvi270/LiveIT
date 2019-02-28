@@ -18,9 +18,10 @@ public interface MovieRepository extends JpaRepository<MovieEntity, Integer> {
     @Modifying
 	MovieEntity save(MovieEntity movieEntity);
 
-    Optional<MovieEntity> findByNameAndVersionEndDateIsNull(String name);
+    @Query("Select CASE WHEN count(mv) > 0 THEN TRUE ELSE FALSE END from MovieEntity mv where mv.name = :name and mv.versionEndDate is null")
+    boolean existsByNameAndVersionEndDateIsNull(@Param("name") String name);
 
-    Optional<MovieEntity> findByMovieIdAndVersionEndDateIsNull(long movieId);
+    Optional<MovieEntity> findByMovieIdAndVersionEndDateIsNull(int movieId);
 
     List<MovieEntity> findByVersionEndDateIsNull();
 

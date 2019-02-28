@@ -1,5 +1,6 @@
 package com.liveit.repository.jpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -17,4 +18,8 @@ public class Venue implements Serializable {
 
     @Column(name = "type")
     private String type;
+
+    @OneToOne(mappedBy = "venue",fetch = FetchType.LAZY)
+    @JsonIgnore
+    private MovieEntity movieEntity;
 }

@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+
 import java.util.List;
 
 @RequestMapping("/movies")
@@ -19,7 +19,8 @@ public class MoviesEndpoint {
 	@Autowired
 	private MovieService movieService;
 
-	public ResponseEntity<?> addMovies(@Valid @RequestBody MovieVo movie) {
+	@PostMapping
+	public ResponseEntity<?> addMovies(@RequestBody MovieVo movie) {
 
 		try {
 			MovieEntity newMovie = movieService.persist(movie);
@@ -27,7 +28,7 @@ public class MoviesEndpoint {
 			return ResponseEntity.status(HttpStatus.CREATED).body(newMovie);
 		}catch(Exception e) {
 			e.getStackTrace();
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Movie already exist");
 		}
 	}
 	
@@ -44,7 +45,7 @@ public class MoviesEndpoint {
 	}
 	
 	@GetMapping(value="{id}")
-	public ResponseEntity<?> getMovie(@PathVariable long id) {
+	public ResponseEntity<?> getMovie(@PathVariable int id) {
 
 		MovieEntity movie = null;
 		try {
@@ -55,20 +56,19 @@ public class MoviesEndpoint {
 		}
 
 		return ResponseEntity.ok(movie);
-			
 	}
 	
-	@PutMapping(value="{id}")
-	public ResponseEntity<?> updateMovie(@Valid @RequestBody MovieVo movieVo) {
+	@PutMapping
+	public ResponseEntity<?> updateMovie(@RequestBody MovieVo movieRequest) {
 
 		MovieEntity updatedMovieRecord = null;
 
 		try {
-			updatedMovieRecord = movieService.update(movieVo);
+			updatedMovieRecord = movieService.update(movieRequest);
 
 			return ResponseEntity.status(HttpStatus.OK).body(updatedMovieRecord);
 		}catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
 	}
 }

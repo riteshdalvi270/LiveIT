@@ -12,7 +12,7 @@ public interface MovieService {
 	
 	List<MovieEntity> getMovies();
 	
-	MovieEntity getMovie(long id) throws Exception;
+	MovieEntity getMovie(int id) throws Exception;
 
 	MovieEntity update(MovieVo movie) throws ParseException;
 

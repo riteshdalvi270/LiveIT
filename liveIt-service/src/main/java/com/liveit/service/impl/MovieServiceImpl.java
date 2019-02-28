@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -32,11 +33,10 @@ public class MovieServiceImpl implements MovieService {
 	@Transactional
 	public MovieEntity persist(MovieVo movie){
 
-		Optional<MovieEntity> movieVersionEntityOptional =
-				movieRepository.findByNameAndVersionEndDateIsNull(movie.getName());
+		boolean exist =
+				movieRepository.existsByNameAndVersionEndDateIsNull(movie.getName());
 
-		if(movieVersionEntityOptional.isPresent()) {
-
+		if(exist) {
 			throw new IllegalStateException("Movie already exist");
 		}
 
@@ -80,7 +80,7 @@ public class MovieServiceImpl implements MovieService {
 
 	@Override
 	@Transactional(readOnly=true)
-	public MovieEntity getMovie(long id){
+	public MovieEntity getMovie(int id){
 
 		Optional<MovieEntity> optionalMovie = movieRepository.findByMovieIdAndVersionEndDateIsNull(id);
 
@@ -108,7 +108,7 @@ public class MovieServiceImpl implements MovieService {
 		return MovieEntity.builder().name(movieVo.getName())
 				.amountPayed(movieVo.getAmountPayed()).genre(genre.get()).venue(venue.get()).imdbURL(movieVo.getImdbURL())
 				.rottenTomatoesURL(movieVo.getRottenTomatoesURL()).ourRating(movieVo.getOurRating())
-				.releasedDate(movieVo.getReleasedDate()).screenMode(movieVo.getScreenMode()).type(movieVo.getType())
-				.watchDate(movieVo.getWatchDate()).versionStartDate(LocalDate.now()).versionEndDate(null).build();
+				.releasedDate(Date.valueOf(movieVo.getReleasedDate())).screenMode(movieVo.getScreenMode()).type(movieVo.getType())
+				.watchDate(Date.valueOf(movieVo.getWatchDate())).versionStartDate(Date.valueOf(LocalDate.now())).versionEndDate(null).build();
 	}
 }
