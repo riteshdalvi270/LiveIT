@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.engine.internal.Cascade;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -14,8 +13,6 @@ import java.util.Date;
 @Table(name="Movies")
 @Data
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class MovieEntity {
 
 	@Id
