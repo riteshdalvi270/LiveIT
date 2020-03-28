@@ -9,5 +9,4 @@ public class LiveITApplication {
     public static void main(String[] args) {
         SpringApplication.run(LiveITApplication.class, args);
     }
-
 }
