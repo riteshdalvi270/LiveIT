@@ -2,13 +2,17 @@ package com.liveit.repository.jpa.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "Venue")
-@Data
+@Setter
+@Getter
 public class Venue implements Serializable {
 
     private static final long serialVersionUID = 1L;

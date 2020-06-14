@@ -1,13 +1,15 @@
 package com.liveit.repository.jpa.entity;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "Genre")
-@Data
+@Setter
+@Getter
 public class Genre implements Serializable {
 
     @Id
@@ -19,5 +21,6 @@ public class Genre implements Serializable {
     private String type;
 
     @OneToOne(mappedBy = "genre", fetch = FetchType.LAZY)
+    @JsonIgnore
     private MovieEntity movieEntity;
 }

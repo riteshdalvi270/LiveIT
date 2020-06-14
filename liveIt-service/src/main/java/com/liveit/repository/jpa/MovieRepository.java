@@ -24,7 +24,7 @@ public interface MovieRepository extends JpaRepository<MovieEntity, Integer> {
     Optional<MovieEntity> findByMovieIdAndVersionEndDateIsNull(int movieId);
 
     List<MovieEntity> findByVersionEndDateIsNull();
-
+    
     /*@Query("Select me from MovieEntity me where me.name = :name and me.versionEndDate is null")
     Optional<MovieEntity> getMovieEntityByName(String name);
 

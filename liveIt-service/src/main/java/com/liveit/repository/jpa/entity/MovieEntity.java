@@ -1,9 +1,8 @@
 package com.liveit.repository.jpa.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -11,8 +10,8 @@ import java.util.Date;
 
 @Entity
 @Table(name="Movies")
-@Data
-@Builder
+@Setter
+@Getter
 public class MovieEntity {
 
 	@Id

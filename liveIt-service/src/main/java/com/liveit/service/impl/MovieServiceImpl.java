@@ -105,10 +105,27 @@ public class MovieServiceImpl implements MovieService {
 			throw new InternalError("Venue not found, please create one first");
 		}
 
-		return MovieEntity.builder().name(movieVo.getName())
+		MovieEntity movieEntity = new MovieEntity();
+		movieEntity.setAmountPayed(movieVo.getAmountPayed());
+		movieEntity.setName(movieVo.getName());
+		movieEntity.setGenre(genre.get());
+		movieEntity.setVenue(venue.get());
+		movieEntity.setImdbURL(movieVo.getImdbURL());
+		movieEntity.setOurRating(movieVo.getOurRating());
+		movieEntity.setReleasedDate(Date.valueOf(movieVo.getReleasedDate()));
+		movieEntity.setRottenTomatoesURL(movieVo.getRottenTomatoesURL());
+		movieEntity.setScreenMode(movieVo.getScreenMode());
+		movieEntity.setType(movieVo.getType());
+		movieEntity.setWatchDate(Date.valueOf(movieVo.getWatchDate()));
+		movieEntity.setVersionEndDate(null);
+		movieEntity.setVersionStartDate(Date.valueOf(LocalDate.now()));
+
+		/*return MovieEntity.builder().name(movieVo.getName())
 				.amountPayed(movieVo.getAmountPayed()).genre(genre.get()).venue(venue.get()).imdbURL(movieVo.getImdbURL())
 				.rottenTomatoesURL(movieVo.getRottenTomatoesURL()).ourRating(movieVo.getOurRating())
 				.releasedDate(Date.valueOf(movieVo.getReleasedDate())).screenMode(movieVo.getScreenMode()).type(movieVo.getType())
-				.watchDate(Date.valueOf(movieVo.getWatchDate())).versionStartDate(Date.valueOf(LocalDate.now())).versionEndDate(null).build();
+				.watchDate(Date.valueOf(movieVo.getWatchDate())).versionStartDate(Date.valueOf(LocalDate.now())).versionEndDate(null).build();*/
+
+		return movieEntity;
 	}
 }
